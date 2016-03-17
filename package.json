@@ -9,7 +9,7 @@
     "url": "git@github.com:comerc/selectize-placecomplete.git"
   },
   "dependencies": {
-    "selectize": "~0.11.2"
+    "selectize": "~0.12.1"
   },
   "bugs": {
     "url": "https://github.com/comerc/selectize-placecomplete/issues"
