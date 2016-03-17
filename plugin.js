@@ -3,6 +3,10 @@
  * @author @comerc (fork of placecomplete by Stephanie H. Chang <st@stchangg.com>)
  * fork me: https://github.com/comerc/selectize-placecomplete
  */
+ 
+if (typeof require === "function") {
+  require("selectize");
+}
 
 window.initPlacecomplete = function() {
   GooglePlacesAPI.completeInit();
