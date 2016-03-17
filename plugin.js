@@ -5,7 +5,7 @@
  */
  
 if (typeof require === "function") {
-  require("selectize");
+ var Selectize = require("selectize");
 }
 
 window.initPlacecomplete = function() {
