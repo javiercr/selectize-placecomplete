@@ -207,35 +207,7 @@ Selectize.define(pluginName, function(options) {
             val = options.selectDetails.call(null, placeResult);
           }
           if (!val) {
-            // custom format of selected value
-            // BUGFIX: placeResult.formatted_address: "01300 Vantaa, Finland" (postal_code)
-            // BUGFIX: placeResult.display_text: "Россия, город Санкт-Петербург, Санкт-Петербург" (double values of "mono-city")
-            var i, c, t, s0;
-            var withoutTypes = [
-              "postal_code",
-              "administrative_area_level_1",
-              "administrative_area_level_2",
-              "administrative_area_level_3",
-              "administrative_area_level_4"
-            ];
-            var aLevel2 = "";
-            val = s0 = placeResult.address_components[0].long_name;
-            i = 1;
-            while (i < placeResult.address_components.length) {
-              c = placeResult.address_components[i];
-              t = c.types[0];
-              if (t === "administrative_area_level_2") {
-                aLevel2 = c.long_name;
-              }
-              if (withoutTypes.indexOf(t) === -1) {
-                // BUGFIX: double values of "mono-city": "St Petersburg, St Petersburg, Russia"
-                // BUGFIX: administrative_area_level_1 restricted for "Смоленск, Смоленская область", but not for "Самара, Самарская область"
-                if (t !== "administrative_area_level_1" || c.long_name !== aLevel2 && c.long_name !== s0) {
-                  val += ", " + c.long_name;
-                }
-              }
-              i++;
-            }
+            val = placeResult.address_components[0].long_name;
           }
           data.text = data.value = val;
           self.removeOption(value);
