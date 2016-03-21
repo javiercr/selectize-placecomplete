@@ -154,14 +154,6 @@ Selectize.define(pluginName, function(options) {
         GooglePlacesAPI.getPredictions(query, options.requestParams)
           .done(function(aprs) {
             var results = $.map(aprs, function(apr) {
-              // // BUGFIX: values that do not contain query: SAN > "Rissia, Saint Petersburg"
-              var skipResult = apr.description.toUpperCase().indexOf(query.toUpperCase()) === -1;
-              if (!skipResult && options.filterResults) {
-                  skipResult = options.filterResults.call(null, apr);
-              }
-              if (skipResult) {
-                  return null;
-              }
               // selectize needs a "text" and "value" property set
               // for each autocomplete list item.
               apr["value"] = apr["text"] = apr["description"];
