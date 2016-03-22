@@ -197,11 +197,11 @@ Selectize.define(pluginName, function(options) {
             val = placeResult.address_components[0].long_name;
           }
           data.text = data.value = val;
-          data.lng = placeResult.geometry.location.lng()
-          data.lat = placeResult.geometry.location.lat()
           self.removeOption(value);
           self.addOption(data);
-          $target.attr('data-value', val);
+          $target.attr('data-place_id', placeResult.place_id);
+          $target.attr('data-lng', placeResult.geometry.location.lng());
+          $target.attr('data-lat', placeResult.geometry.location.lat());
           original.call(self, e);
         })
         .fail(function(errorMsg) {
