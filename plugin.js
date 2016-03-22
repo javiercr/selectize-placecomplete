@@ -136,7 +136,6 @@ Selectize.define(pluginName, function(options) {
       types: ["(cities)"]
     },
     filterResults: null,
-    selectDetails: null,
   }, options);
 
   this.setup = (function() {
@@ -194,14 +193,12 @@ Selectize.define(pluginName, function(options) {
       GooglePlacesAPI.getDetails(data)
         .done(function(placeResult) {
           var val = null;
-          if (options.selectDetails)
-          {
-            val = options.selectDetails.call(self, placeResult);
-          }
           if (!val) {
             val = placeResult.address_components[0].long_name;
           }
           data.text = data.value = val;
+          data.lng = placeResult.geometry.location.lng()
+          data.lat = placeResult.geometry.location.lat()
           self.removeOption(value);
           self.addOption(data);
           $target.attr('data-value', val);
