@@ -196,7 +196,7 @@ Selectize.define(pluginName, function(options) {
           var val = null;
           if (options.selectDetails)
           {
-            val = options.selectDetails.call(null, placeResult);
+            val = options.selectDetails.call(self, placeResult);
           }
           if (!val) {
             val = placeResult.address_components[0].long_name;
